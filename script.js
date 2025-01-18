@@ -11,10 +11,13 @@ const obtenerXReal = (clientX) => clientX - $canvas.getBoundingClientRect().left
 const obtenerYReal = (clientY) => clientY - $canvas.getBoundingClientRect().top;
 let haComenzadoDibujo = false; // Bandera que indica si el usuario está presionando el botón del mouse sin soltarlo
 
+$canvas.height = canvas.offsetHeight; // para dar tamaño al canvas 
+$canvas.width = canvas.offsetWidth; // para dar tamaño al cambas
 
 const limpiarCanvas = () => {
     // Colocar color blanco en fondo de canvas
     contexto.fillStyle = COLOR_FONDO;
+    //contexto.fillRect(0, 0, $canvas.width, $canvas.height);
     contexto.fillRect(0, 0, $canvas.width, $canvas.height);
 };
 limpiarCanvas();
@@ -32,14 +35,14 @@ $btnDescargar.onclick = () => {
         },
         body: JSON.stringify({ imagen: base64Image }),
     })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data); // Mostrar respuesta del servidor
-        alert('Imagen guardada exitosamente en el servidor.');
-    })
-    .catch(error => {
-        console.error('Error al guardar la imagen:', error);
-    });
+        .then(response => response.text())
+        .then(data => {
+            console.log(data); // Mostrar respuesta del servidor
+            alert('Imagen guardada exitosamente en el servidor.');
+        })
+        .catch(error => {
+            console.error('Error al guardar la imagen:', error);
+        });
 };
 
 
